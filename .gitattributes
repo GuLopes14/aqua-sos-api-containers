@@ -1,2 +1,13 @@
 /mvnw text eol=lf
 *.cmd text eol=crlf
+
+# Java
+*.java text eol=lf
+
+# YAML
+*.yml text eol=lf
+*.yaml text eol=lf
+
+# Docker
+Dockerfile text eol=lf
+*.dockerignore text eol=lf
