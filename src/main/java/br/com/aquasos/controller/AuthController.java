@@ -14,7 +14,7 @@ import br.com.aquasos.service.TokenService;
 @RestController
 public class AuthController {
 
-     public record Token (String token, String email){}
+    public record Token (String token, String email, String nome){}
     public record Credentials (String email, String password){}
 
     @Autowired

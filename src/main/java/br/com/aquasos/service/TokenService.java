@@ -27,7 +27,7 @@ public class TokenService {
                 .withExpiresAt(expiresAt)
                 .sign(algorithm);
 
-        return new Token(jwt, usuario.getEmail());
+        return new Token(jwt, usuario.getEmail(), usuario.getNome());
     }
 
     public Usuario getUsuarioFromToken(String token) {
