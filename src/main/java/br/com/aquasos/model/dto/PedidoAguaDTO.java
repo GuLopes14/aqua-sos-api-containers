@@ -1,15 +1,12 @@
 package br.com.aquasos.model.dto;
 
-import java.time.LocalDate;
-
-import br.com.aquasos.model.enums.StatusPedido;
+import br.com.aquasos.model.enums.NivelUrgencia;
 
 public record PedidoAguaDTO(
         Long id,
         Long usuarioId,
-        Long pontoDistribuicaoId,
         Integer quantidadeLitros,
-        LocalDate dataSolicitacao,
-        StatusPedido status
+        NivelUrgencia nivelUrgencia,
+        String endereco
 ) {
 }

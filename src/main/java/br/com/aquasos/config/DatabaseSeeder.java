@@ -9,7 +9,6 @@ import org.springframework.stereotype.Component;
 import br.com.aquasos.model.PedidoAgua;
 import br.com.aquasos.model.PontoDistribuicao;
 import br.com.aquasos.model.Usuario;
-import br.com.aquasos.model.enums.StatusPedido;
 import br.com.aquasos.model.enums.UserRole;
 import br.com.aquasos.repository.PedidoAguaRepository;
 import br.com.aquasos.repository.PontoDistribuicaoRepository;
@@ -70,23 +69,19 @@ public class DatabaseSeeder {
         if (pedidoAguaRepository.count() == 0) {
             Usuario usuario = usuarioRepository.findAll().get(0);
             Usuario usuario2 = usuarioRepository.findAll().get(1);
-            PontoDistribuicao ponto = pontoDistribuicaoRepository.findAll().get(0);
-            PontoDistribuicao ponto2 = pontoDistribuicaoRepository.findAll().get(1);
 
             var pedidos = List.of(
                     PedidoAgua.builder()
                             .usuario(usuario)
-                            .ponto(ponto)
                             .quantidadeLitros(500)
-                            .dataSolicitacao(java.time.LocalDate.now())
-                            .status(StatusPedido.PENDENTE)
+                            .nivelUrgencia(br.com.aquasos.model.enums.NivelUrgencia.MEDIA)
+                            .endereco("Rua Principal, 100")
                             .build(),
                     PedidoAgua.builder()
                             .usuario(usuario2)
-                            .ponto(ponto2)
                             .quantidadeLitros(1000)
-                            .dataSolicitacao(java.time.LocalDate.now())
-                            .status(StatusPedido.ENTREGUE)
+                            .nivelUrgencia(br.com.aquasos.model.enums.NivelUrgencia.ALTA)
+                            .endereco("Avenida Norte, 200")
                             .build());
             pedidoAguaRepository.saveAll(pedidos);
         }

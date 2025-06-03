@@ -1,8 +1,6 @@
 package br.com.aquasos.model;
 
-import java.time.LocalDate;
-
-import br.com.aquasos.model.enums.StatusPedido;
+import br.com.aquasos.model.enums.NivelUrgencia;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -13,7 +11,6 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.PastOrPresent;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -25,21 +22,23 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class PedidoAgua {
-
-    @Id@GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne@JoinColumn(name = "usuario_id")
+    @ManyToOne
+    @JoinColumn(name = "usuario_id", nullable = false)
+    @NotNull(message = "Usuário é obrigatório")
     private Usuario usuario;
 
-    @ManyToOne@JoinColumn(name = "ponto_distribuicao_id")
-    private PontoDistribuicao ponto;
-
-    @NotNull@Min(1)
+    @NotNull(message = "Quantidade de litros é obrigatória")
+    @Min(value = 1, message = "Quantidade de litros deve ser maior que zero")
     private Integer quantidadeLitros;
 
-    @PastOrPresent
-    private LocalDate dataSolicitacao;
+    @Enumerated(EnumType.STRING)
+    @NotNull(message = "Nível de urgência é obrigatório")
+    private NivelUrgencia nivelUrgencia;
 
-    @Enumerated(EnumType.STRING)private StatusPedido status;
+    @NotNull(message = "Endereço é obrigatório")
+    private String endereco;
 }

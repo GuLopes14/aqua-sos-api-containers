@@ -1,7 +1,10 @@
 package br.com.aquasos.controller;
 
+import java.util.HashMap;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,8 +17,11 @@ import br.com.aquasos.service.TokenService;
 @RestController
 public class AuthController {
 
-    public record Token (String token, String email, String nome){}
-    public record Credentials (String email, String password){}
+    public record Token(String token, String email, String nome) {
+    }
+
+    public record Credentials(String email, String password) {
+    }
 
     @Autowired
     private TokenService tokenService;
@@ -24,10 +30,18 @@ public class AuthController {
     AuthenticationManager authManager;
 
     @PostMapping("/login")
-    public Token login(@RequestBody Credentials credentials){
+    public ResponseEntity<?> login(@RequestBody Credentials credentials) {
         var authentication = new UsernamePasswordAuthenticationToken(credentials.email(), credentials.password());
         var user = (Usuario) authManager.authenticate(authentication).getPrincipal();
 
-        return tokenService.createToken(user);
+        Token tokenObj = tokenService.createToken(user);
+
+        Map<String, Object> response = new HashMap<>();
+        response.put("token", tokenObj.token());
+        response.put("id", user.getId());
+        response.put("nome", user.getNome());
+        response.put("email", user.getEmail());
+
+        return ResponseEntity.ok(response);
     }
 }
