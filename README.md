@@ -20,7 +20,7 @@ Organizar, monitorar e otimizar a distribuição de água potável em situaçõe
 
 ## 🚀 Principais Funcionalidades
 
-- **API Java (Este Projeto):** Responsável por organizar os pedidos de água, armazenar dados em banco relacional Oracle, e servir como backend central da solução.
+- **API Java (Este Projeto):** Responsável por organizar os pedidos de água, armazenar dados em banco relacional PostgreSQL, e servir como backend central da solução.
 - **Aplicativo Mobile:** Desenvolvido em React Native, permite aos usuários solicitar água, acompanhar pedidos e receber notificações.
 - **Painel de Operadores/Voluntários:** Permite acompanhamento do status dos pontos de distribuição e tomada de decisão baseada em dados atualizados.
 
@@ -28,7 +28,7 @@ Organizar, monitorar e otimizar a distribuição de água potável em situaçõe
 
 A arquitetura do AquaSOS foi pensada para englobar diferentes perfis de usuários, fluxos de informação e infraestrutura disponível:
 
-- **API Java:** Gerenciamento centralizado de demandas, integração com banco Oracle, e comunicação com o front-end mobile e dashboards.
+- **API Java:** Gerenciamento centralizado de demandas, integração com banco PostgreSQL, e comunicação com o front-end mobile e dashboards.
 - **Aplicativo Mobile:** Interface acessível para solicitações e acompanhamento.
 - **Painéis Operacionais:** Ferramentas para usuários necessitando água e voluntários.
 
@@ -43,7 +43,7 @@ O projeto demonstra como a integração entre sensores IoT, protocolos de comuni
 1. **Pré-requisitos**
    - ☕ Java 11+
    - 🐳 Docker (opcional, para execução em containers)
-   - 🗄️ Banco Postgre disponível
+   - 🗄️ Banco PostgreSQL disponível
 
 2. **Clonando o Projeto**
    ```sh
@@ -51,7 +51,15 @@ O projeto demonstra como a integração entre sensores IoT, protocolos de comuni
    ```
 
 3. **Configuração**
-   - Configure as variáveis de ambiente ou arquivos de propriedades para conexão com o banco Oracle e demais integrações.
+   - Configure as variáveis de ambiente ou arquivos de propriedades para conexão com o banco PostgreSQL e demais integrações.
+   - Exemplo de configuração no `application.properties`:
+     ```
+     spring.datasource.url=jdbc:postgresql://localhost:5432/aquasos
+     spring.datasource.username=seu_usuario
+     spring.datasource.password=sua_senha
+     spring.jpa.hibernate.ddl-auto=update
+     spring.jpa.database-platform=org.hibernate.dialect.PostgreSQLDialect
+     ```
 
 4. **Execução**
    - Via Maven: 
