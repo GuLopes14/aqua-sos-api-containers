@@ -51,15 +51,35 @@ O projeto demonstra como a integração entre sensores IoT, protocolos de comuni
    ```
 
 3. **Configuração**
-   - Configure as variáveis de ambiente ou arquivos de propriedades para conexão com o banco PostgreSQL e demais integrações.
-   - Exemplo de configuração no `application.properties`:
-     ```
-     spring.datasource.url=jdbc:postgresql://localhost:5432/aquasos
-     spring.datasource.username=seu_usuario
-     spring.datasource.password=sua_senha
+   - Configure as variáveis de ambiente ou edite o arquivo `src/main/resources/application.properties` para a conexão com o banco PostgreSQL e demais integrações.
+   - Exemplo de configuração recomendada:
+     ```properties
+     spring.application.name=aqua-api
+
+     # URL de conexão com PostgreSQL (ajuste o nome do banco se necessário)
+     spring.datasource.url=jdbc:postgresql://${HOST:localhost}:5432/aqua_sos
+     spring.datasource.username=${SPRING_DATASOURCE_USERNAME:postgres}
+     spring.datasource.password=${SPRING_DATASOURCE_PASSWORD:gus1411!}
+
+     # DDL AUTO: 'create' apaga tudo a cada inicialização, 'update' mantém dados e atualiza estrutura
      spring.jpa.hibernate.ddl-auto=update
-     spring.jpa.database-platform=org.hibernate.dialect.PostgreSQLDialect
+
+     # Mostra SQLs no console para debug
+     spring.jpa.show-sql=true
+
+     # Dialeto do PostgreSQL
+     spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.PostgreSQLDialect
+
+     # Configuração do Swagger/OpenAPI
+     springdoc.swagger-ui.path=/swagger-ui.html
+     springdoc.api-docs.path=/v3/api-docs
+     springdoc.api-docs.enabled=true
+     springdoc.swagger-ui.enabled=true
      ```
+
+   - **Observação:**  
+     - Para desenvolvimento rápido, você pode usar `spring.jpa.hibernate.ddl-auto=create`, mas isso irá apagar todos os dados ao reiniciar a aplicação.  
+     - Em produção, utilize sempre `update` ou `validate` para preservar os dados.
 
 4. **Execução**
    - Via Maven: 
