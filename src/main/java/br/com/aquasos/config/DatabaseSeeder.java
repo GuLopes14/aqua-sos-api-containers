@@ -22,9 +22,6 @@ public class DatabaseSeeder {
     private UsuarioRepository usuarioRepository;
 
     @Autowired
-    private PontoDistribuicaoRepository pontoDistribuicaoRepository;
-
-    @Autowired
     private PedidoAguaRepository pedidoAguaRepository;
 
     @Autowired
@@ -47,23 +44,6 @@ public class DatabaseSeeder {
                             .role(UserRole.USER)
                             .build());
             usuarioRepository.saveAll(usuarios);
-        }
-
-        if (pontoDistribuicaoRepository.count() == 0) {
-            var pontos = List.of(
-                    PontoDistribuicao.builder()
-                            .nome("Ponto Central")
-                            .endereco("Rua Principal, 100")
-                            .cidade("São Paulo")
-                            .capacidadeTotalLitros(10000)
-                            .build(),
-                    PontoDistribuicao.builder()
-                            .nome("Ponto Norte")
-                            .endereco("Avenida Norte, 200")
-                            .cidade("Guarulhos")
-                            .capacidadeTotalLitros(8000)
-                            .build());
-            pontoDistribuicaoRepository.saveAll(pontos);
         }
 
         if (pedidoAguaRepository.count() == 0) {
