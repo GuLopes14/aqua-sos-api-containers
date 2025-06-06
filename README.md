@@ -43,7 +43,7 @@ O projeto demonstra como a integração entre sensores IoT, protocolos de comuni
 1. **Pré-requisitos**
    - ☕ Java 11+
    - 🐳 Docker (opcional, para execução em containers)
-   - 🗄️ Banco Oracle disponível
+   - 🗄️ Banco Postgre disponível
 
 2. **Clonando o Projeto**
    ```sh
