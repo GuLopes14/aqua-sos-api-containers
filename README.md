@@ -58,8 +58,8 @@ O projeto demonstra como a integração entre sensores IoT, protocolos de comuni
 
      # URL de conexão com PostgreSQL (ajuste o nome do banco se necessário)
      spring.datasource.url=jdbc:postgresql://${HOST:localhost}:5432/aqua_sos
-     spring.datasource.username=${SPRING_DATASOURCE_USERNAME:postgres}
-     spring.datasource.password=${SPRING_DATASOURCE_PASSWORD:gus1411!}
+     spring.datasource.username=${SPRING_DATASOURCE_USERNAME:seu user}
+     spring.datasource.password=${SPRING_DATASOURCE_PASSWORD:sua senha}
 
      # DDL AUTO: 'create' apaga tudo a cada inicialização, 'update' mantém dados e atualiza estrutura
      spring.jpa.hibernate.ddl-auto=update
