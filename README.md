@@ -66,13 +66,58 @@ O projeto demonstra como a integração entre sensores IoT, protocolos de comuni
     - Para verificar a persistência no banco de dados, dar o seguinte comando:
       - docker exec -it postgres-container psql -U postgres -d aqua_sos
     - Exemplo de comando para verificar a persistência no banco de dados:
-      - SELECT * FROM pedidos-agua;
-      - SELECT * FROM usuarios;
+      - SELECT * FROM pedido_agua;
+      - SELECT * FROM usuario;
     - Após executar os testes e derrubar o container, dar: 
     ```sh
       docker compose down -v
     ```
 ## 📋 Exemplos de Requisições JSON
+
+### Cadastrar Usuário
+
+**POST** `/registrar`
+
+**Corpo da requisição:**
+```json
+{
+  "nome": "João Carlos",
+  "email": "joao@gmail.com",
+  "password": "joao123",
+  "role": "USER"
+}
+```
+**Resposta (201 Created):**
+```json
+{
+  "id": 4,
+  "nome": "João Carlos",
+  "email": "joao@gmail.com",
+  "role": "USER"
+}
+```
+
+### Login de usuário
+**POST** `/login`
+
+**Corpo da requisição:**
+```json
+{
+  "email": "joao@gmail.com",
+  "password": "joao123"
+}
+```
+
+**Resposta (200 OK):**
+```json
+{
+  "role": "USER",
+  "nome": "João Carlos",
+  "id": 4,
+  "email": "joao@gmail.com",
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI0IiwiZW1haWwiOiJndXN0YXZvQGdtYWlsLmNvbSIsInJvbGUiOiJVU0VSIiwiZXhwIjoxNzQ5MzMxMjcxfQ.QNwSMJHTJM2j17VQu63xx_VNKyVAcuhJr_dEZEP7RO0"
+}
+```
 
 ### Criar Pedido de Água
 
