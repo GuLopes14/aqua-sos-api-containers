@@ -13,7 +13,19 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
+import io.swagger.v3.oas.annotations.enums.SecuritySchemeIn;
+import io.swagger.v3.oas.annotations.enums.SecuritySchemeType;
+import io.swagger.v3.oas.annotations.security.SecurityScheme;
+import io.swagger.v3.oas.models.OpenAPI;
+
 @Configuration
+@SecurityScheme(
+    bearerFormat = "JWT",
+    name = "bearer",
+    scheme = "bearer",
+    type = SecuritySchemeType.HTTP,
+    in = SecuritySchemeIn.HEADER
+)
 public class SecurityConfig {
 
     @Autowired
@@ -45,5 +57,10 @@ public class SecurityConfig {
     @Bean
     AuthenticationManager authManager(AuthenticationConfiguration config) throws Exception{
         return config.getAuthenticationManager();
+    }
+
+    @Bean
+    OpenAPI openApi(){
+        return new OpenAPI();
     }
 }

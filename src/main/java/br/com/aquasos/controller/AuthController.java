@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.aquasos.model.Usuario;
 import br.com.aquasos.service.TokenService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 
 @RestController
 public class AuthController {
@@ -30,6 +32,7 @@ public class AuthController {
     AuthenticationManager authManager;
 
     @PostMapping("/login")
+    @Operation(security = @SecurityRequirement(name = ""), tags = "Autenticação", summary = "Realiza o login do usuário", description = "Endpoint para autenticar um usuário e gerar um token JWT")
     public ResponseEntity<?> login(@RequestBody Credentials credentials) {
         var authentication = new UsernamePasswordAuthenticationToken(credentials.email(), credentials.password());
         var user = (Usuario) authManager.authenticate(authentication).getPrincipal();
@@ -38,9 +41,10 @@ public class AuthController {
 
         Map<String, Object> response = new HashMap<>();
         response.put("token", tokenObj.token());
-        response.put("id", user.getId());
         response.put("nome", user.getNome());
         response.put("email", user.getEmail());
+        response.put("role", user.getRole().name());
+        response.put("id", user.getId());
 
         return ResponseEntity.ok(response);
     }

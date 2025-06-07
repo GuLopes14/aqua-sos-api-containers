@@ -22,6 +22,7 @@ import br.com.aquasos.model.dto.RespostaUsuarioDTO;
 import br.com.aquasos.repository.UsuarioRepository;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.validation.Valid;
 
 @RestController
@@ -46,7 +47,7 @@ public class UsuarioController {
     }
 
     @GetMapping
-    @Operation(tags = "Usuario", summary = "Listar usuários", description = "Devolve a lista de usuários com filtros e paginação")
+    @Operation(security = @SecurityRequirement(name = "bearer"), tags = "Usuários", summary = "Lista todos os usuários")
     public Page<RespostaUsuarioDTO> index(Pageable pageable) {
         var usuarios = repository.findAll(pageable);
         return usuarios.map(u -> new RespostaUsuarioDTO(
@@ -57,7 +58,7 @@ public class UsuarioController {
     }
 
     @PutMapping("/{id}")
-    @Operation(tags = "Usuario", summary = "Atualizar usuário", description = "Atualiza dados do usuário")
+    @Operation(security = @SecurityRequirement(name = "bearer"), tags = "Usuários", summary = "Atualiza um usuário pelo ID")
     @CacheEvict(value = "usuarios", allEntries = true)
     public RespostaUsuarioDTO update(@PathVariable Long id, @RequestBody Usuario usuarioAtualizado) {
         Usuario usuario = repository.findById(id)
@@ -74,7 +75,7 @@ public class UsuarioController {
     }
 
     @DeleteMapping("/{id}")
-    @Operation(tags = "Usuario", summary = "Apagar usuário", description = "Deleta o usuário do sistema")
+    @Operation(security = @SecurityRequirement(name = "bearer"), tags = "Usuários", summary = "Deleta um usuário pelo ID")
     @CacheEvict(value = "usuarios", allEntries = true)
     public void delete(@PathVariable Long id) {
         if (!repository.existsById(id)) {

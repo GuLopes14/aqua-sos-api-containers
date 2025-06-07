@@ -45,8 +45,7 @@ public class Usuario implements UserDetails {
     private String password;
 
     @Enumerated(EnumType.STRING)
-    @Builder.Default
-    private UserRole role = UserRole.USER;
+    private UserRole role;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

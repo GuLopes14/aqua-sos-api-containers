@@ -18,10 +18,12 @@ import br.com.aquasos.repository.PedidoAguaRepository;
 import br.com.aquasos.repository.UsuarioRepository;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/pedidos-agua")
+@SecurityRequirement(name = "bearer")
 public class PedidoAguaController {
 
     public record PedidoAguaFilter(

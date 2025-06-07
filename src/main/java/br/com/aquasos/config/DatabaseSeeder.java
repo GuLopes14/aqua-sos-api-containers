@@ -7,11 +7,9 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import br.com.aquasos.model.PedidoAgua;
-import br.com.aquasos.model.PontoDistribuicao;
 import br.com.aquasos.model.Usuario;
 import br.com.aquasos.model.enums.UserRole;
 import br.com.aquasos.repository.PedidoAguaRepository;
-import br.com.aquasos.repository.PontoDistribuicaoRepository;
 import br.com.aquasos.repository.UsuarioRepository;
 import jakarta.annotation.PostConstruct;
 
@@ -32,16 +30,22 @@ public class DatabaseSeeder {
         if (usuarioRepository.count() == 0) {
             var usuarios = List.of(
                     Usuario.builder()
-                            .nome("João Solicitante")
-                            .email("joao@aqua.com")
-                            .password(passwordEncoder.encode("joao123"))
-                            .role(UserRole.ADMIN)
+                            .nome("Gabriel Jablonski")
+                            .email("jaba@aqua.com")
+                            .password(passwordEncoder.encode("jaba123"))
+                            .role(UserRole.USER)
                             .build(),
                     Usuario.builder()
-                            .nome("Ana Voluntária")
-                            .email("ana@aqua.com")
-                            .password(passwordEncoder.encode("ana123"))
+                            .nome("Renato David")
+                            .email("re@aqua.com")
+                            .password(passwordEncoder.encode("re123"))
                             .role(UserRole.USER)
+                            .build(),
+                    Usuario.builder()
+                            .nome("Gustavo Lopes")
+                            .email("gus@aqua.com")
+                            .password(passwordEncoder.encode("gus123"))
+                            .role(UserRole.ADMIN)
                             .build());
             usuarioRepository.saveAll(usuarios);
         }
