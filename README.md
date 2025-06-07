@@ -8,6 +8,12 @@
 | Renato David      | 555627 |
 | Gabriel Jablonski | 555452 |
 
+## 📽️ Links para os vídeos:
+* Vídeo demonstração da solução completa - JAVA: [Demonstração completa da solução](https://www.youtube.com/watch?v=CUp47mJoCYs) 
+* Vídeo de DEVOPS - [Vídeo da conteinerização](https://youtu.be/4tWw24QHGsw)
+* Vídeo PITCH - [PITCH - AquaSOS]()
+
+
 ## Visão Geral
 
 A água potável é um recurso essencial à vida, e sua escassez em momentos de crise representa um dos maiores desafios enfrentados por comunidades vulneráveis. Em situações de emergência — como enchentes, secas prolongadas, deslizamentos ou colapsos na infraestrutura urbana — o acesso à água potável pode ser interrompido por dias ou até semanas. Nesses cenários, falta não apenas o recurso em si, mas também informações organizadas e em tempo real sobre onde e como ele pode ser distribuído, dificultando a tomada de decisão por gestores, voluntários e pela própria população.
@@ -22,7 +28,6 @@ Organizar, monitorar e otimizar a distribuição de água potável em situaçõe
 
 - **API Java (Este Projeto):** Responsável por organizar os pedidos de água, armazenar dados em banco relacional PostgreSQL, e servir como backend central da solução.
 - **Aplicativo Mobile:** Desenvolvido em React Native, permite aos usuários solicitar água, acompanhar pedidos e receber notificações.
-- **Painel de Operadores/Voluntários:** Permite acompanhamento do status dos pontos de distribuição e tomada de decisão baseada em dados atualizados.
 
 ## 🏗️ Arquitetura
 
@@ -35,8 +40,6 @@ A arquitetura do AquaSOS foi pensada para englobar diferentes perfis de usuário
 ## 🌱 Impacto Social
 
 Mais do que uma resposta técnica, o AquaSOS busca garantir que a água chegue a quem mais precisa, de forma justa, organizada e rápida. Oferece ainda uma ferramenta estratégica para gestores públicos e voluntários, facilitando decisões baseadas em dados reais.
-
-O projeto demonstra como a integração entre sensores IoT, protocolos de comunicação, dashboards interativos e aplicativos mobile pode transformar realidades, sendo uma solução replicável e adaptável para diferentes regiões e situações.
 
 ## 🛠️ Testes e demonstração
 
