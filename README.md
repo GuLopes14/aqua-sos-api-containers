@@ -11,7 +11,7 @@
 ## 📽️ Links para os vídeos:
 * Vídeo demonstração da solução completa - JAVA: [Demonstração completa da solução](https://www.youtube.com/watch?v=CUp47mJoCYs) 
 * Vídeo de DEVOPS - [Vídeo da conteinerização](https://youtu.be/4tWw24QHGsw)
-* Vídeo PITCH - [PITCH - AquaSOS]()
+* Vídeo PITCH - [PITCH - AquaSOS](https://www.youtube.com/watch?v=4cECjhc2spQ)
 
 
 ## Visão Geral
