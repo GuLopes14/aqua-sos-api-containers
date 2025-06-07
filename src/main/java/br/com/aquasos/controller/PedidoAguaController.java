@@ -99,7 +99,7 @@ public class PedidoAguaController {
 
     @DeleteMapping("{id}")
     @CacheEvict(value = "pedidosAgua", allEntries = true)
-    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @ResponseStatus(HttpStatus.OK)
     @Operation(tags = "PedidoAgua", summary = "Deletar pedido de água por ID", description = "Remove um pedido de água pelo seu ID")
     public void destroy(@PathVariable Long id) {
         log.info("Apagando pedido de água {}", id);

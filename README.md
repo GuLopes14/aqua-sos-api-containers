@@ -38,65 +38,40 @@ Mais do que uma resposta técnica, o AquaSOS busca garantir que a água chegue a
 
 O projeto demonstra como a integração entre sensores IoT, protocolos de comunicação, dashboards interativos e aplicativos mobile pode transformar realidades, sendo uma solução replicável e adaptável para diferentes regiões e situações.
 
-## 🛠️ Como Executar
+## 🛠️ Testes e demonstração
 
 1. **Pré-requisitos**
-   - ☕ Java 11+
-   - 🐳 Docker (opcional, para execução em containers)
-   - 🗄️ Banco PostgreSQL disponível
+  - ☕ Java 11+
+  - 🐳 Docker (para rodar desta forma, precisa ter o docker desktop instalado: [DockerDesktop](https://www.docker.com/products/docker-desktop/))
+  - 🗄️ Banco PostgreSQL disponível
 
-2. **Clonando o Projeto**
+2. **Link do deploy online do render**
+  - 🔗 https://aqua-sos-api-containers.onrender.com
+
+
+3. **Clonando o Projeto**
    ```sh
    git clone https://github.com/GuLopes14/aqua-sos-api-containers.git
    ```
 
-3. **Configuração**
-   - Configure as variáveis de ambiente ou edite o arquivo `src/main/resources/application.properties` para a conexão com o banco PostgreSQL e demais integrações.
-   - Exemplo de configuração recomendada:
-     ```properties
-     spring.application.name=aqua-api
-
-     # URL de conexão com PostgreSQL (ajuste o nome do banco se necessário)
-     spring.datasource.url=jdbc:postgresql://${HOST:localhost}:5432/aqua_sos
-     spring.datasource.username=${SPRING_DATASOURCE_USERNAME:seu user}
-     spring.datasource.password=${SPRING_DATASOURCE_PASSWORD:sua senha}
-
-     # DDL AUTO: 'create' apaga tudo a cada inicialização, 'update' mantém dados e atualiza estrutura
-     spring.jpa.hibernate.ddl-auto=update
-
-     # Mostra SQLs no console para debug
-     spring.jpa.show-sql=true
-
-     # Dialeto do PostgreSQL
-     spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.PostgreSQLDialect
-
-     # Configuração do Swagger/OpenAPI
-     springdoc.swagger-ui.path=/swagger-ui.html
-     springdoc.api-docs.path=/v3/api-docs
-     springdoc.api-docs.enabled=true
-     springdoc.swagger-ui.enabled=true
-     ```
-
-   - **Observação:**  
-     - Para desenvolvimento rápido, você pode usar `spring.jpa.hibernate.ddl-auto=create`, mas isso irá apagar todos os dados ao reiniciar a aplicação.  
-     - Em produção, utilize sempre `update` ou `validate` para preservar os dados.
-
 4. **Execução**
-   - Via Maven: 
+ 
+    - Rodar utilizando Docker:  
      ```sh
-     ./mvnw spring-boot:run
+      docker compose up --build -d
      ```
-   - Via Docker:  
-     ```sh
-     docker compose up --build -d
-     ```
-     - Para derrubar o container:
-       ```sh
-       docker compose down -v 
-       ```
+    - Após rodar o projeto o swagger estará disponível no link abaixo:
+      - [http://localhost:8080/swagger-ui.html](http://localhost:8080/swagger)
 
----
-
+    - Para verificar a persistência no banco de dados, dar o seguinte comando:
+      - docker exec -it postgres-container psql -U postgres -d aqua_sos
+    - Exemplo de comando para verificar a persistência no banco de dados:
+      - SELECT * FROM pedidos-agua;
+      - SELECT * FROM usuarios;
+    - Após executar os testes e derrubar o container, dar: 
+    ```sh
+      docker compose down -v
+    ```
 ## 📋 Exemplos de Requisições JSON
 
 ### Criar Pedido de Água
